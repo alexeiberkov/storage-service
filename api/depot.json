@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "title": "Изучить JavaScript",
+        "known": true
+    },
+    {
+        "id": 2,
+        "title": "Изучить React",
+        "known": true
+    },
+    {
+        "id": 3,
+        "title": "Изучить Redux",
+        "known": false
+    },
+    {
+        "id": 4,
+        "title": "Написать приложение",
+        "known": true
+    }
+]
