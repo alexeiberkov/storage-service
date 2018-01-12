@@ -1,22 +1,12 @@
 [
     {
         "id": 1,
-        "title": "Изучить JavaScript",
+        "title": "My favourite pen",
         "known": true
     },
     {
         "id": 2,
-        "title": "Изучить React",
-        "known": true
-    },
-    {
-        "id": 3,
-        "title": "Изучить Redux",
+        "title": "Collection of coins",
         "known": false
-    },
-    {
-        "id": 4,
-        "title": "Написать приложение",
-        "known": true
     }
 ]
