@@ -1,4 +1,4 @@
-import { GET_STORED_ITEMS, ADD_STORED_ITEMS, DELETE_STORED_ITEMS, EDIT_STORED_ITEMS, TOGGLE_STORED_ITEMS } from '../actions';
+import { GET_STORED_ITEMS, ADD_STORED_ITEMS, DELETE_STORED_ITEMS, EDIT_STORED_ITEMS, TOGGLE_STORED_ITEMS, FILTER_ALL, FILTER_KNOWN_LOCATION, FILTER_WANTED, FILTER_SEARCH } from '../actions';
 
 function itemReducer(state = {}, action) {
     switch (action.type) {
@@ -50,14 +50,17 @@ export default function reducer(state = [], action) {
 
 export function getFilteredStoredItems(state, filter) {
     switch (filter) {
-        case 'ALL':
+        case FILTER_ALL:
             return state;
         
-        case 'KNOWN_LOCATION':
+        case FILTER_KNOWN_LOCATION:
             return state.filter(item => item.known);
 
-        case 'WANTED':
+        case FILTER_WANTED:
             return state.filter(item => !item.known);
+
+        case FILTER_SEARCH:
+            return state;
 
         default:
             return state;

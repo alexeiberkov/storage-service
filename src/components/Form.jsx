@@ -41,8 +41,8 @@ class Form extends React.Component {
                     type="text"
                     value={this.state.title}
                     placeholder="Add an object to storage"
-                    onChange={this.handleChange} />
-                    
+                    onChange={this.handleChange}
+                />
                 <Button type="submit" disabled={disabled}>Add</Button>
             </form>
         );

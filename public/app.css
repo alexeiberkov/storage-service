@@ -13,7 +13,6 @@ button {
     position: relative;
     height: 36px;
     margin: 0;
-    min-width: 64px;
     padding: 0 16px;
     display: inline-block;
     font-family: "Roboto","Helvetica","Arial",sans-serif;
@@ -73,9 +72,14 @@ input {
     font-size: 1rem;
     color: #757575;
     padding: .5em;
-    border-radius: 2px;
+    border-radius: 4px;
     border: 1px solid lightgray;
     outline: none;
+    transition: all 550ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+input:focus {
+    border: 1px solid #de4655;
 }
 
 main {
@@ -86,8 +90,6 @@ main {
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.156863) 0 3px 10px, rgba(0, 0, 0, 0.227451) 0 3px 10px;
 }
-
-
 
 /* Header */
 header {
@@ -138,7 +140,8 @@ header h1 {
     background-color: rgba(70,161,222,.4);
 }
 
-.stored-item-filter a {
+.stored-item-filter a,
+.stored-item-filter .search-form {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -166,6 +169,9 @@ header h1 {
     left: 0;
     position: absolute;
     background: #de4655;
+}
+.search-form button {
+    min-width: initial;
 }
 
 
@@ -233,12 +239,6 @@ header h1 {
 
 .stored-item-add-form input {
     flex: 1;
-    outline: none;
-    transition: all 550ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-}
-
-.stored-item-add-form input:focus {
-    border: 1px solid #de4655;
 }
 
 .stored-item-add-form button {
