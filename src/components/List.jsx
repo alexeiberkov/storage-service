@@ -17,8 +17,7 @@ function List(props) {
                         onToggle={props.onToggle}
                         onEdit={props.onEdit}
                     />)
-                :
-                <div className="loading">Loading...</div>
+                : props.fetching ? (<div className="loading">Loading...</div>) : (<div className="loading">There are no items</div>)
             }
         </section>
     );
