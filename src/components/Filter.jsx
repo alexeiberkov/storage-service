@@ -5,7 +5,7 @@ import { FILTER_ALL, FILTER_KNOWN_LOCATION, FILTER_WANTED, FILTER_SEARCH } from 
 import FilterLink from './FilterLink';
 import FilterSearchLink from './FilterSearchLink';
 
-function Filter(props) {
+export default function Filter(props) {
     return (
         <div className="stored-item-filter">
             <FilterLink
@@ -43,5 +43,3 @@ Filter.propTypes = {
     activeFilter: PropTypes.string.isRequired,
     onSetFilter: PropTypes.func.isRequired
 };
-
-export default Filter;

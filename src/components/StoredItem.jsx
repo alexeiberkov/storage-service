@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import Checkbox from './Checkbox';
 import Button from './Button';
+import Modal from './Modal';
 
-class StoredItem extends React.Component {
+export default class StoredItem extends Component {
     constructor(props) {
         super(props);
 
@@ -19,7 +20,7 @@ class StoredItem extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.state.editing) {
+        if (this.state.editing && !this.props.known) {
             this.refs.title.focus();
         }
     }
@@ -57,19 +58,34 @@ class StoredItem extends React.Component {
 
                 <span className="stored-item-title">{this.props.title}</span>
 
-                <Button className="edit icon" icon="edit" onClick={this.handleEdit} title="Edit" />
-                <Button className="delete icon" icon="delete" onClick={this.handleDelete} title="Delete" />
+                <Button className="edit icon" icon="edit" onClick={this.handleEdit} title="Edit"/>
+                <Button className="delete icon" icon="delete" onClick={this.handleDelete} title="Delete"/>
             </div>
         );
     }
 
     renderForm() {
-        return (
-            <form className="stored-item-edit-form" onSubmit={this.handleSubmit}>
-                <input type="text" ref="title" defaultValue={this.props.title}/>
-                <Button className="save icon" icon="save" type="submit"/>
-            </form>
-        );
+        return this.props.known ?
+            (
+                <Fragment>
+                    {this.renderDisplay()}
+                    <Modal>
+                        <div className="modal-wrapper">
+                            <h1>Stored item profile</h1>
+                            <form className="stored-item-edit-form" onSubmit={this.handleSubmit}>
+                                <input type="text" defaultValue={this.props.title}/>
+                                <Button className="save icon" icon="save" type="submit"/>
+                            </form>
+                        </div>
+                    </Modal>
+                </Fragment>
+            ) :
+            (
+                <form className="stored-item-edit-form" onSubmit={this.handleSubmit}>
+                    <input type="text" ref="title" defaultValue={this.props.title}/>
+                    <Button className="save icon" icon="save" type="submit"/>
+                </form>
+            )
     }
 
     render() {
@@ -85,5 +101,3 @@ StoredItem.propTypes = {
     onToggle: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired
 };
-
-export default StoredItem;

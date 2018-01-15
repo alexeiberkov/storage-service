@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Stats(props) {
+export default function Stats(props) {
     const total = props.storedItems.length;
     const known = props.storedItems.filter(item => item.known).length;
     const wanted = total - known;
@@ -33,5 +33,3 @@ Stats.propTypes = {
         known: PropTypes.bool.isRequired
     })).isRequired
 };
-
-export default Stats;

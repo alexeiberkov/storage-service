@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Button(props) {
+export default function Button(props) {
     return (
         <button className={props.className} onClick={props.onClick} {...props}>
             {props.icon ? 
@@ -20,5 +20,3 @@ Button.propTypes = {
     disabled: PropTypes.bool,
     onClick: PropTypes.func
 };
-
-export default Button;

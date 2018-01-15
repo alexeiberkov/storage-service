@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Stats from './Stats';
 
-function Header(props) {
+export default function Header(props) {
     return (
         <header>
             <Stats storedItems={props.storedItems} />
@@ -15,5 +15,3 @@ function Header(props) {
 Header.propTypes = {
     storedItems: PropTypes.array.isRequired
 };
-
-export default Header;

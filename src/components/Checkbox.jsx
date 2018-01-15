@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Checkbox(props) {
+export default function Checkbox(props) {
     return (
         <button className="checkbox icon" onClick={props.onChange} {...props}>
             <i className="material-icons">
@@ -15,5 +15,3 @@ Checkbox.propTypes = {
     checked: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired
 };
-
-export default Checkbox;

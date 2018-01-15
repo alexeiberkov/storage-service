@@ -5,7 +5,7 @@ import FilterContainer from './containers/FilterContainer';
 import ListContainer from './containers/ListContainer';
 import FormContainer from './containers/FormContainer';
 
-function App() {
+export default function App() {
     return (
         <main>
             <HeaderContainer />
@@ -15,5 +15,3 @@ function App() {
         </main>
     );
 }
-
-export default App;

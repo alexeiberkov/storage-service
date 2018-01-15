@@ -1,6 +1,6 @@
-import { SET_FILTER } from '../actions';
+import { SET_FILTER, FILTER_ALL } from '../actions';
 
-function reducer(state = 'ALL', action) {
+export default function reducer(state = FILTER_ALL, action) {
     switch (action.type) {
         case SET_FILTER:
             return action.filter;
@@ -9,5 +9,3 @@ function reducer(state = 'ALL', action) {
             return state;
     }
 }
-
-export default reducer;

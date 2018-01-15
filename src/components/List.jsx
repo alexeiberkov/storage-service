@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import StoredItem from './StoredItem';
 
-function List(props) {
+export default function List(props) {
     return (
         <section className="stored-item-list">
             {!props.fetching && props.storedItems.length ?
@@ -33,5 +33,3 @@ List.propTypes = {
     onToggle: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired
 };
-
-export default List;

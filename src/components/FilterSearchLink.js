@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function FilterSearchLink(props) {
+export default function FilterSearchLink(props) {
     return (
         <div className="search-form">
             {
@@ -27,5 +27,3 @@ FilterSearchLink.propTypes = {
     active: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired
 };
-
-export default FilterSearchLink;
