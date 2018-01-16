@@ -17,6 +17,8 @@ export default class StoredItem extends Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleToggle = this.handleToggle.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleStoredSubmit = this.handleStoredSubmit.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -34,6 +36,18 @@ export default class StoredItem extends Component {
         this.setState({editing: false});
     }
 
+    handleStoredSubmit(event) {
+        event.preventDefault();
+
+        const title = this.refs.storedTitle.value;
+        const location = this.refs.storedLocation.value;
+        const comment = this.refs.storedComment.value;
+        const photo = this.refs.storedPhoto.files[0].name;
+
+        this.props.onEdit(this.props.id, title, location, comment, photo);
+        this.setState({editing: false});
+    }
+
     handleDelete() {
         let confirm = window.confirm('Are you sore?');
         if (confirm) {
@@ -47,6 +61,10 @@ export default class StoredItem extends Component {
 
     handleEdit() {
         this.setState({editing: true});
+    }
+
+    handleCloseModal() {
+        this.setState({editing: false});
     }
 
     renderDisplay() {
@@ -72,9 +90,25 @@ export default class StoredItem extends Component {
                     <Modal>
                         <div className="modal-wrapper">
                             <h1>Stored item profile</h1>
-                            <form className="stored-item-edit-form" onSubmit={this.handleSubmit}>
-                                <input type="text" defaultValue={this.props.title}/>
-                                <Button className="save icon" icon="save" type="submit"/>
+                            <form onSubmit={this.handleStoredSubmit}>
+                                <label>Item name: <input type="text" ref="storedTitle" defaultValue={this.props.title}/></label>
+                                <label>Item location: <input
+                                    ref="storedLocation"
+                                    type="text"
+                                    defaultValue={this.props.location}
+                                    placeholder="Add a place where it will be stored"
+                                /></label>
+                                <label>Comment: <textarea
+                                    ref="storedComment"
+                                    rows="4"
+                                    defaultValue={this.props.comment}
+                                    placeholder="Add a comment"
+                                /></label>
+                                <label>Item photo: <input type="file" defaultValue={this.props.photo} ref="storedPhoto" accept=".jpg, .jpeg, .png"/></label>
+                                <div className="button-group">
+                                    <Button type="submit">Save</Button>
+                                    <Button onClick={this.handleCloseModal}>Close</Button>
+                                </div>
                             </form>
                         </div>
                     </Modal>
@@ -96,6 +130,9 @@ export default class StoredItem extends Component {
 StoredItem.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired,
     known: PropTypes.bool.isRequired,
     onDelete: PropTypes.func.isRequired,
     onToggle: PropTypes.func.isRequired,

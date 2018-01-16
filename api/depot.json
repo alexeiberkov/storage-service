@@ -2,11 +2,17 @@
     {
         "id": 1,
         "title": "My favourite pen",
-        "known": true
+        "known": true,
+        "location": "On the table",
+        "comment": "Some comment",
+        "photo": ""
     },
     {
         "id": 2,
         "title": "Collection of coins",
-        "known": false
+        "known": false,
+        "location": "",
+        "comment": "",
+        "photo": ""
     }
 ]

@@ -15,7 +15,6 @@ html {
 }
 
 body {
-    position: relative;
     color: #757575;
     font: 1.6rem "Roboto", Arial, Helvetica, sans-serif;
     background-color: #fafafa;
@@ -82,13 +81,21 @@ button .material-icons {
     width: 24px;
     vertical-align: middle;
 }
+/* Forms */
+label {
+    display: block;
+    width: 80%;
+    margin-bottom: 2rem;
+    color: #555;
+    font: bold 1.6rem "Roboto", Arial, Helvetica, sans-serif;
+}
 
-input {
+input, textarea {
     padding: .5em;
     border: 1px solid lightgray;
     border-radius: 4px;
     color: #757575;
-    font: 1.6rem "Roboto", Arial, Helvetica, sans-serif;
+    font: normal 1.6rem "Roboto", Arial, Helvetica, sans-serif;
     outline: none;
     transition: all 550ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
 }
@@ -97,10 +104,30 @@ input:focus {
     border: 1px solid #de4655;
 }
 
+::-webkit-input-placeholder {
+    color: #bababa;
+}
+::-moz-placeholder {
+    color: #bababa;
+}
+:-ms-input-placeholder {
+    color: #bababa;
+}
+
+.button-group {
+    text-align: right;
+}
+
+.button-group button {
+    margin-left: 1rem;
+    color: #555;
+    background: linear-gradient(to bottom, #fefefe 0%,#d1d1d1 49%,#dbdbdb 50%,#e2e2e2 100%);
+}
+
 main {
     background: #fff;
-    width: 700px;
-    margin: 50px auto;
+    width: 70rem;
+    margin: 5rem auto;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.156863) 0 3px 10px, rgba(0, 0, 0, 0.227451) 0 3px 10px;
@@ -269,17 +296,55 @@ header h1 {
 
 /* Modal */
 .modal-wrapper {
-    position: absolute;
-    top: 50%;
+    position: fixed;
+    top: 27rem;
     left: 50%;
-    width: 90%;
-    max-width: 120rem;
-    padding: 6rem 3rem 2rem 3rem;
+    width: 72rem;
+    margin-left: -36rem;
+    padding: 2rem 3rem;
     border-radius: 4px;
     line-height: 2.4;
-    transform: translateX(-50%) translateY(-50%);
     box-shadow: rgba(0, 0, 0, 0.156863) 0 3px 10px, rgba(0, 0, 0, 0.227451) 0 3px 10px;
+    background-color: #ACD0E9;
     z-index: 9999;
+}
+
+.modal-wrapper:after {
+    position: fixed;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -2;
+}
+
+.modal-wrapper:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 4px;
+    background-color: #ACD0E9;
+    z-index: -1;
+}
+
+.modal-wrapper h1 {
+    margin-bottom: 4rem;
+    border-bottom: 1px solid rgba(256, 256, 256, 0.3);
+    text-shadow: rgba(256, 256, 256, 0.2) 0 3px 10px, rgba(256, 256, 256, 0.3) 0 3px 10px;
+}
+
+input, textarea {
+    width: 70%;
+    margin-left: 2rem;
+}
+
+label {
+    text-align: right;
 }
 
 /* Animations */

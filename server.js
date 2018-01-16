@@ -36,7 +36,10 @@ app.post('/api/depot', (req, res) => {
     const item = {
         id: nextId++,
         title: req.body.title,
-        known: false
+        known: false,
+        location: "",
+        comment: "",
+        photo: ""
     };
 
     storedItems.push(item);
@@ -53,6 +56,9 @@ app.put('/api/depot/:id', (req, res) => {
     if (!item) return res.sendStatus(404);
 
     item.title = req.body.title || item.title;
+    item.location = req.body.location || item.location;
+    item.comment = req.body.comment || item.comment;
+    item.photo = req.body.photo || item.photo;
 
     rewriteJSON(storedItems);
 

@@ -12,6 +12,9 @@ export default function List(props) {
                         key={item.id}
                         id={item.id}
                         title={item.title}
+                        location={item.location}
+                        comment={item.comment}
+                        photo={item.photo}
                         known={item.known}
                         onDelete={props.onDelete}
                         onToggle={props.onToggle}
@@ -27,6 +30,9 @@ List.propTypes = {
     storedItems: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
+        location: PropTypes.string.isRequired,
+        comment: PropTypes.string.isRequired,
+        photo: PropTypes.string.isRequired,
         known: PropTypes.bool.isRequired
     })).isRequired,
     onDelete: PropTypes.func.isRequired,

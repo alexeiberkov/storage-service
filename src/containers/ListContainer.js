@@ -15,7 +15,7 @@ function mapDispatchToProps(dispatch) {
     return {
         onDelete: id => dispatch(deleteItem(id)),
         onToggle: id => dispatch(toggleItem(id)),
-        onEdit: (id, title) => dispatch(editItem(id, title))
+        onEdit: (id, title, location, comment, photo) => dispatch(editItem(id, title, location, comment, photo))
     };
 }
 

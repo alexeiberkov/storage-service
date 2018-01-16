@@ -48,8 +48,8 @@ export function toggleItem(id) {
         }));
 }
 
-export function editItem(id, title) {
-    return axios.put(`api/depot/${id}`, {title})
+export function editItem(id, title, location, comment, photo) {
+    return axios.put(`api/depot/${id}`, {title, location, comment, photo})
         .then(response => response.data)
         .then(item => ({
             type: EDIT_STORED_ITEMS,
