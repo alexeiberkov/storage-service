@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Checkbox from './Checkbox';
 import Button from './Button';
-import Modal from './Modal';
+import StoredItemForm from './StoredItemForm';
 
 export default class StoredItem extends Component {
     constructor(props) {
@@ -36,14 +36,7 @@ export default class StoredItem extends Component {
         this.setState({editing: false});
     }
 
-    handleStoredSubmit(event) {
-        event.preventDefault();
-
-        const title = this.refs.storedTitle.value;
-        const location = this.refs.storedLocation.value;
-        const comment = this.refs.storedComment.value;
-        const photo = this.refs.storedPhoto.files[0].name;
-
+    handleStoredSubmit(title, location, comment, photo) {
         this.props.onEdit(this.props.id, title, location, comment, photo);
         this.setState({editing: false});
     }
@@ -87,31 +80,14 @@ export default class StoredItem extends Component {
             (
                 <Fragment>
                     {this.renderDisplay()}
-                    <Modal>
-                        <div className="modal-wrapper">
-                            <h1>Stored item profile</h1>
-                            <form onSubmit={this.handleStoredSubmit}>
-                                <label>Item name: <input type="text" ref="storedTitle" defaultValue={this.props.title}/></label>
-                                <label>Item location: <input
-                                    ref="storedLocation"
-                                    type="text"
-                                    defaultValue={this.props.location}
-                                    placeholder="Add a place where it will be stored"
-                                /></label>
-                                <label>Comment: <textarea
-                                    ref="storedComment"
-                                    rows="4"
-                                    defaultValue={this.props.comment}
-                                    placeholder="Add a comment"
-                                /></label>
-                                <label>Item photo: <input type="file" defaultValue={this.props.photo} ref="storedPhoto" accept=".jpg, .jpeg, .png"/></label>
-                                <div className="button-group">
-                                    <Button type="submit">Save</Button>
-                                    <Button onClick={this.handleCloseModal}>Close</Button>
-                                </div>
-                            </form>
-                        </div>
-                    </Modal>
+                    <StoredItemForm
+                        title={this.props.title}
+                        location={this.props.location}
+                        comment={this.props.comment}
+                        photo={this.props.photo}
+                        onSubmit={this.handleStoredSubmit}
+                        onClose={this.handleCloseModal}
+                    />
                 </Fragment>
             ) :
             (
