@@ -42,7 +42,7 @@ export default class StoredItem extends Component {
     }
 
     handleDelete() {
-        let confirm = window.confirm('Are you sore?');
+        let confirm = window.confirm('Are you sure?');
         if (confirm) {
             this.props.onDelete(this.props.id);
         }

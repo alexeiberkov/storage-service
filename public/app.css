@@ -360,6 +360,7 @@ header h1 {
 .modal-wrapper .label-file {
     display: inline-block;
     width: 35%;
+    margin-left: 14.75rem;
     padding: 0.625rem 1.25rem;
     color: #555;
     font: bold 1.6rem "Roboto", Arial, Helvetica, sans-serif;
@@ -376,9 +377,11 @@ header h1 {
     border-radius: 4px;
     vertical-align: top;
     box-shadow: rgba(0, 0, 0, 0.156863) 0 3px 10px, rgba(0, 0, 0, 0.227451) 0 3px 10px;
+    cursor: pointer;
 }
-.modal-wrapper img + input {
-    width: calc(55% - 2rem);
+
+.modal-wrapper img + .label-file {
+    margin-left: 0;
 }
 
 /* Animations */

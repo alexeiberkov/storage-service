@@ -35,9 +35,8 @@ export function addItem(title) {
 export function addPhoto(photo) {
     return axios.post('images/upload', photo, {headers: {'Content-Type': photo.type}})
         .then(response => response.data)
-        .then(item => ({
-            type: ADD_STORED_ITEM_PHOTO,
-            item
+        .then(() => ({
+            type: ADD_STORED_ITEM_PHOTO
         }));
 }
 

@@ -63,20 +63,15 @@ export default class StoredItemForm extends Component {
                             defaultValue={this.props.comment}
                             placeholder="Add a comment"
                         /></label>
-                        {this.state.photo !== '' ?
+                        {this.props.photo !== '' ?
                             (<Fragment>
-                                <img src={`./images/${this.state.photo}`} alt={this.props.title}/>
-                                <input
-                                    className="input-file"
-                                    type="file"
-                                    id="inputFile"
-                                    ref="storedPhoto"
-                                    accept=".jpg, .jpeg, .png"
-                                    onChange={this.onPhotoUpload}
+                                <img
+                                    src={`./images/${this.state.photo}`}
+                                    alt={this.props.title}
+                                    onClick={() => {window.open(`./images/${this.state.photo}`)}}
+                                    title="Click to enlarge"
                                 />
                                 <label className="label-file" htmlFor="inputFile">Change photo</label>
-                            </Fragment>) :
-                            <Fragment>
                                 <input
                                     className="input-file"
                                     type="file"
@@ -85,7 +80,17 @@ export default class StoredItemForm extends Component {
                                     accept=".jpg, .jpeg, .png"
                                     onChange={this.onPhotoUpload}
                                 />
-                                <label className="label-file" htmlFor="inputFile">Choose an image…</label>
+                            </Fragment>) :
+                            <Fragment>
+                                <label className="label-file" htmlFor="inputFile">{this.state.photo !== '' ? this.state.photo : 'Choose an image…'}</label>
+                                <input
+                                    className="input-file"
+                                    type="file"
+                                    id="inputFile"
+                                    ref="storedPhoto"
+                                    accept=".jpg, .jpeg, .png"
+                                    onChange={this.onPhotoUpload}
+                                />
                             </Fragment>
                         }
                         <div className="button-group">
