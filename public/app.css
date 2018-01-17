@@ -82,7 +82,7 @@ button .material-icons {
     vertical-align: middle;
 }
 /* Forms */
-label {
+label:not(.label-file) {
     display: block;
     width: 80%;
     margin-bottom: 2rem;
@@ -297,7 +297,7 @@ header h1 {
 /* Modal */
 .modal-wrapper {
     position: fixed;
-    top: 27rem;
+    top: 10rem;
     left: 50%;
     width: 72rem;
     margin-left: -36rem;
@@ -338,13 +338,47 @@ header h1 {
     text-shadow: rgba(256, 256, 256, 0.2) 0 3px 10px, rgba(256, 256, 256, 0.3) 0 3px 10px;
 }
 
-input, textarea {
+.modal-wrapper input, .modal-wrapper textarea {
+    display: inline-block;
     width: 70%;
     margin-left: 2rem;
 }
 
-label {
+.modal-wrapper label:not(.label-file) {
     text-align: right;
+}
+
+.modal-wrapper .input-file {
+    position: absolute;
+    overflow: hidden;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    z-index: -1;
+}
+
+.modal-wrapper .label-file {
+    display: inline-block;
+    width: 35%;
+    padding: 0.625rem 1.25rem;
+    color: #555;
+    font: bold 1.6rem "Roboto", Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+.modal-wrapper img {
+    display: inline-block;
+    width: auto;
+    max-width: 35%;
+    height: auto;
+    margin-left: 16rem;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    vertical-align: top;
+    box-shadow: rgba(0, 0, 0, 0.156863) 0 3px 10px, rgba(0, 0, 0, 0.227451) 0 3px 10px;
+}
+.modal-wrapper img + input {
+    width: calc(55% - 2rem);
 }
 
 /* Animations */

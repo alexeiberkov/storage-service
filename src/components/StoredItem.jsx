@@ -87,6 +87,7 @@ export default class StoredItem extends Component {
                         photo={this.props.photo}
                         onSubmit={this.handleStoredSubmit}
                         onClose={this.handleCloseModal}
+                        onPhotoUpload={this.props.onPhotoUpload}
                     />
                 </Fragment>
             ) :
@@ -112,5 +113,6 @@ StoredItem.propTypes = {
     known: PropTypes.bool.isRequired,
     onDelete: PropTypes.func.isRequired,
     onToggle: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired
+    onEdit: PropTypes.func.isRequired,
+    onPhotoUpload: PropTypes.func.isRequired
 };

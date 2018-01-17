@@ -19,6 +19,7 @@ export default function List(props) {
                         onDelete={props.onDelete}
                         onToggle={props.onToggle}
                         onEdit={props.onEdit}
+                        onPhotoUpload={props.onPhotoUpload}
                     />)
                 : props.fetching ? (<div className="loading">Loading...</div>) : (<div className="loading">There are no items</div>)
             }
@@ -37,5 +38,6 @@ List.propTypes = {
     })).isRequired,
     onDelete: PropTypes.func.isRequired,
     onToggle: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired
+    onEdit: PropTypes.func.isRequired,
+    onPhotoUpload: PropTypes.func.isRequired
 };

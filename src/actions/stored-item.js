@@ -3,6 +3,7 @@ import axios from 'axios';
 export const REQUEST_STORED_ITEMS = 'REQUEST_STORED_ITEMS';
 export const GET_STORED_ITEMS = 'GET_STORED_ITEMS';
 export const ADD_STORED_ITEMS = 'ADD_STORED_ITEMS';
+export const ADD_STORED_ITEM_PHOTO = 'ADD_STORED_ITEM_PHOTO';
 export const DELETE_STORED_ITEMS = 'DELETE_STORED_ITEMS';
 export const TOGGLE_STORED_ITEMS = 'TOGGLE_STORED_ITEMS';
 export const EDIT_STORED_ITEMS = 'EDIT_STORED_ITEMS';
@@ -27,6 +28,15 @@ export function addItem(title) {
         .then(response => response.data)
         .then(item => ({
             type: ADD_STORED_ITEMS,
+            item
+        }));
+}
+
+export function addPhoto(photo) {
+    return axios.post('images/upload', photo, {headers: {'Content-Type': photo.type}})
+        .then(response => response.data)
+        .then(item => ({
+            type: ADD_STORED_ITEM_PHOTO,
             item
         }));
 }
