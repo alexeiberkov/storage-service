@@ -75,28 +75,34 @@ export default class StoredItem extends Component {
         );
     }
 
+    _renderFormTitle() {
+        return (
+            <form className="stored-item-edit-form" onSubmit={this.handleSubmit}>
+                <input type="text" ref="title" defaultValue={this.props.title}/>
+                <Button className="save icon" icon="save" type="submit"/>
+            </form>
+        );
+    }
+
+    _renderFormProfile() {
+        return (
+            <Fragment>
+                {this.renderDisplay()}
+                <StoredItemForm
+                    title={this.props.title}
+                    location={this.props.location}
+                    comment={this.props.comment}
+                    photo={this.props.photo}
+                    onSubmit={this.handleStoredSubmit}
+                    onClose={this.handleCloseModal}
+                    onPhotoUpload={this.props.onPhotoUpload}
+                />
+            </Fragment>
+        );
+    }
+
     renderForm() {
-        return this.props.known ?
-            (
-                <Fragment>
-                    {this.renderDisplay()}
-                    <StoredItemForm
-                        title={this.props.title}
-                        location={this.props.location}
-                        comment={this.props.comment}
-                        photo={this.props.photo}
-                        onSubmit={this.handleStoredSubmit}
-                        onClose={this.handleCloseModal}
-                        onPhotoUpload={this.props.onPhotoUpload}
-                    />
-                </Fragment>
-            ) :
-            (
-                <form className="stored-item-edit-form" onSubmit={this.handleSubmit}>
-                    <input type="text" ref="title" defaultValue={this.props.title}/>
-                    <Button className="save icon" icon="save" type="submit"/>
-                </form>
-            )
+        return this.props.known ? this._renderFormProfile() : this._renderFormTitle();
     }
 
     render() {
