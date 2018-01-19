@@ -1,5 +1,7 @@
 ### App to organize storage of stuff (household items, etc)
 
+![App to organize storage of stuff](../master/public/images/app-screen.jpg)
+
 Based on wonderful course <a href="https://github.com/codedojo/redux-basics">Redux-basics</a> written by Oleg Polyakov.
 
 #### How it works
