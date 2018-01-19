@@ -49,7 +49,7 @@ export default function reducer(state = [], action) {
 }
 
 export function getFilteredStoredItems(state, filter) {
-    switch (filter) {
+    switch (filter.filterType) {
         case FILTER_ALL:
             return state;
         
@@ -60,7 +60,7 @@ export function getFilteredStoredItems(state, filter) {
             return state.filter(item => !item.known);
 
         case FILTER_SEARCH:
-            return state;
+            return state.filter(item => (item.title).indexOf(filter.value) > -1);
 
         default:
             return state;

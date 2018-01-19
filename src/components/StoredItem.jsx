@@ -27,8 +27,8 @@ export default class StoredItem extends Component {
         }
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
+    handleSubmit(e) {
+        e.preventDefault();
 
         const title = this.refs.title.value;
 

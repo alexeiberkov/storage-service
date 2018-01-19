@@ -4,9 +4,12 @@ export const FILTER_KNOWN_LOCATION = 'FILTER_KNOWN_LOCATION';
 export const FILTER_WANTED = 'FILTER_WANTED';
 export const FILTER_SEARCH = 'FILTER_SEARCH';
 
-export function setFilter(filter) {
+export function setFilter(filterType, value) {
     return {
         type: SET_FILTER,
-        filter
+        payload: {
+            filterType,
+            value
+        }
     };
 }

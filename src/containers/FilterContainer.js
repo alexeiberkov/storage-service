@@ -5,13 +5,13 @@ import Filter from '../components/Filter';
 
 function mapStateToProps(state) {
     return {
-        activeFilter: state.filter
+        activeFilter: state.filter.filterType
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onSetFilter: filter => dispatch(setFilter(filter))
+        onSetFilter: (filter, value='') => dispatch(setFilter(filter, value))
     };
 }
 

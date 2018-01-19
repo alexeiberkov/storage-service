@@ -15,8 +15,8 @@ export default class Form extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
+    handleSubmit(e) {
+        e.preventDefault();
 
         const title = this.state.title;
 
@@ -26,8 +26,8 @@ export default class Form extends Component {
         }
     }
 
-    handleChange(event) {
-        const title = event.target.value;
+    handleChange(e) {
+        const title = e.target.value;
 
         this.setState({ title });
     }

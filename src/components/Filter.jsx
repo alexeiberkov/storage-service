@@ -33,7 +33,7 @@ export default function Filter(props) {
                 icon="search"
                 title="Find item"
                 active={props.activeFilter === FILTER_SEARCH}
-                onClick={() => props.onSetFilter(FILTER_SEARCH)}>
+                onClick={req => props.onSetFilter(FILTER_SEARCH, req)}>
             </FilterSearchLink>
         </div>
     );

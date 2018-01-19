@@ -20,8 +20,8 @@ export default class StoredItemForm extends Component {
         this.refs.storedTitle.focus();
     }
 
-    onSubmit(event) {
-        event.preventDefault();
+    onSubmit(e) {
+        e.preventDefault();
 
         const title = this.refs.storedTitle.value;
         const location = this.refs.storedLocation.value;
