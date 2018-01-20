@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "id": 0,
         "title": "My favourite pen",
         "known": true,
         "location": "On the table",
@@ -8,7 +8,7 @@
         "photo": "pen.jpg"
     },
     {
-        "id": 2,
+        "id": 1,
         "title": "Collection of coins",
         "known": false,
         "location": "",

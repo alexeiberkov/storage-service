@@ -26,7 +26,7 @@ const upload = multer({ storage: multer.diskStorage({
     })
 }).single('image');
 
-let nextId = 5;
+let nextId = storedItems.length;
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -110,6 +110,13 @@ app.delete('/api/depot/:id', (req, res) => {
     const index = storedItems.findIndex(item => item.id == req.params.id);
 
     if (index === -1) return res.sendStatus(404);
+
+    const photoName = storedItems[index].photo;
+
+    if (!!photoName && photoName !== '') {
+        const filePath = `./public/images/${photoName}`;
+        fs.unlinkSync(filePath);
+    }
 
     storedItems.splice(index, 1);
 
