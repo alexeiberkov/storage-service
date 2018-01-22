@@ -61,13 +61,14 @@ export default class StoredItem extends Component {
     }
 
     renderDisplay() {
-        const className = `stored-item${this.props.known ? ' known' : ''}`;
+        const {title, known} = this.props;
+        const className = `stored-item${known ? ' known' : ''}`;
 
         return (
             <div className={className}>
-                <Checkbox checked={this.props.known} onChange={this.handleToggle} title={`Did you ${this.props.known ? 'lost' : 'found'} it?`}/>
+                <Checkbox checked={known} onChange={this.handleToggle} title={`Did you ${known ? 'lost' : 'found'} it?`}/>
 
-                <span className="stored-item-title">{this.props.title}</span>
+                <span className="stored-item-title">{title}</span>
 
                 <Button className="edit icon" icon="edit" onClick={this.handleEdit} title="Edit"/>
                 <Button className="delete icon" icon="delete" onClick={this.handleDelete} title="Delete"/>
@@ -85,17 +86,19 @@ export default class StoredItem extends Component {
     }
 
     _renderFormProfile() {
+        const {title, location, comment, photo, onPhotoUpload} = this.props;
+
         return (
             <Fragment>
                 {this.renderDisplay()}
                 <StoredItemForm
-                    title={this.props.title}
-                    location={this.props.location}
-                    comment={this.props.comment}
-                    photo={this.props.photo}
+                    title={title}
+                    location={location}
+                    comment={comment}
+                    photo={photo}
                     onSubmit={this.handleStoredSubmit}
                     onClose={this.handleCloseModal}
-                    onPhotoUpload={this.props.onPhotoUpload}
+                    onPhotoUpload={onPhotoUpload}
                 />
             </Fragment>
         );

@@ -45,29 +45,31 @@ export default class StoredItemForm extends Component {
 
 
     render() {
+        const {title, location, comment, photo, onClose} = this.props;
+
         return (
             <Modal>
                 <div className="modal-wrapper">
                     <h1>Stored item profile</h1>
                     <form onSubmit={this.onSubmit}>
-                        <label>Item name: <input type="text" ref="storedTitle" defaultValue={this.props.title}/></label>
+                        <label>Item name: <input type="text" ref="storedTitle" defaultValue={title}/></label>
                         <label>Item location: <input
                             ref="storedLocation"
                             type="text"
-                            defaultValue={this.props.location}
+                            defaultValue={location}
                             placeholder="Add a place where it will be stored"
                         /></label>
                         <label>Comment: <textarea
                             ref="storedComment"
                             rows="4"
-                            defaultValue={this.props.comment}
+                            defaultValue={comment}
                             placeholder="Add a comment"
                         /></label>
-                        {this.props.photo !== '' ?
+                        {photo !== '' ?
                             (<Fragment>
                                 <img
                                     src={`./images/${this.state.photo}`}
-                                    alt={this.props.title}
+                                    alt={title}
                                     onClick={() => {window.open(`./images/${this.state.photo}`)}}
                                     title="Click to enlarge"
                                 />
@@ -95,7 +97,7 @@ export default class StoredItemForm extends Component {
                         }
                         <div className="button-group">
                             <Button type="submit">Save</Button>
-                            <Button onClick={this.props.onClose}>Close</Button>
+                            <Button onClick={onClose}>Close</Button>
                         </div>
                     </form>
                 </div>

@@ -28,7 +28,6 @@ export default function Stats(props) {
 
 Stats.propTypes = {
     storedItems: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         known: PropTypes.bool.isRequired
     })).isRequired

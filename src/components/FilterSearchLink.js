@@ -5,7 +5,7 @@ export default class FilterSearchLink extends Component {
     constructor(props) {
         super(props);
 
-        this.onClick = this.onClick.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -14,7 +14,7 @@ export default class FilterSearchLink extends Component {
         }
     }
 
-    onClick(e) {
+    handleSearch(e) {
         e.preventDefault();
 
         const searchRequest = this.refs.searchField.value;
@@ -25,17 +25,19 @@ export default class FilterSearchLink extends Component {
     }
 
     render() {
+        const { title, active} = this.props;
+
         return (
-            <div className={`search-form${this.props.active ? ' is-active' : ''}`} title={this.props.title}>
+            <div className={`search-form${active ? ' is-active' : ''}`} title={title}>
                 <input type="search" ref="searchField" placeholder="Find item" />
-                <button onClick={this.onClick}><i className="material-icons">search</i></button>
+                <button onClick={this.handleSearch}><i className="material-icons">search</i></button>
             </div>
         );
     }
 }
 
 FilterSearchLink.propTypes = {
-    icon: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     active: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired
 };
