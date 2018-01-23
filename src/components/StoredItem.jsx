@@ -41,7 +41,9 @@ export default class StoredItem extends Component {
         this.setState({editing: false});
     }
 
-    handleDelete() {
+    handleDelete(e) {
+        e.preventDefault();
+
         let confirm = window.confirm('Are you sure?');
         if (confirm) {
             this.props.onDelete(this.props.id);
@@ -52,8 +54,14 @@ export default class StoredItem extends Component {
         this.props.onToggle(this.props.id);
     }
 
-    handleEdit() {
-        this.setState({editing: true});
+    handleEdit(e) {
+        e.preventDefault();
+
+        if (this.props.known) {
+            this.props.onFillProfile(this.props.id);
+        } else {
+            this.setState({editing: true});
+        }
     }
 
     handleCloseModal() {
@@ -68,7 +76,7 @@ export default class StoredItem extends Component {
             <div className={className}>
                 <Checkbox checked={known} onChange={this.handleToggle} title={`Did you ${known ? 'lost' : 'found'} it?`}/>
 
-                <span className="stored-item-title">{title}</span>
+                <span className="stored-item-title" title={`${known ? 'Lost' : 'Known'} item`}>{title}</span>
 
                 <Button className="edit icon" icon="edit" onClick={this.handleEdit} title="Edit"/>
                 <Button className="delete icon" icon="delete" onClick={this.handleDelete} title="Delete"/>
@@ -123,5 +131,6 @@ StoredItem.propTypes = {
     onDelete: PropTypes.func.isRequired,
     onToggle: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
-    onPhotoUpload: PropTypes.func.isRequired
+    onPhotoUpload: PropTypes.func.isRequired,
+    onFillProfile: PropTypes.func.isRequired
 };

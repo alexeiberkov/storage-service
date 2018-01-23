@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { deleteItem, toggleItem, editItem, addPhoto } from '../actions';
+import { deleteItem, toggleItem, editItem, addPhoto, fillProfile } from '../actions';
 import { getFilteredStoredItems } from '../reducers';
 import List from '../components/List';
 
@@ -16,6 +16,7 @@ function mapDispatchToProps(dispatch) {
         onDelete: id => dispatch(deleteItem(id)),
         onToggle: id => dispatch(toggleItem(id)),
         onEdit: (id, title, location, comment, photo) => dispatch(editItem(id, title, location, comment, photo)),
+        onFillProfile: id => dispatch(fillProfile(id)),
         onPhotoUpload: photo => dispatch(addPhoto(photo))
     };
 }

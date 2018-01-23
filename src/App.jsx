@@ -4,6 +4,7 @@ import HeaderContainer from './containers/HeaderContainer';
 import FilterContainer from './containers/FilterContainer';
 import ListContainer from './containers/ListContainer';
 import FormContainer from './containers/FormContainer';
+import ProfileContainer from './containers/ProfileContainer';
 
 export default function App() {
     return (
@@ -12,6 +13,7 @@ export default function App() {
             <FilterContainer />
             <ListContainer />
             <FormContainer />
+            <ProfileContainer />
         </main>
     );
 }

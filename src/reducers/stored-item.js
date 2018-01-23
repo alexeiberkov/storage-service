@@ -1,4 +1,16 @@
-import { GET_STORED_ITEMS, ADD_STORED_ITEMS, DELETE_STORED_ITEMS, EDIT_STORED_ITEMS, TOGGLE_STORED_ITEMS, FILTER_ALL, FILTER_KNOWN_LOCATION, FILTER_WANTED, FILTER_SEARCH } from '../actions';
+import {
+    GET_STORED_ITEMS,
+    ADD_STORED_ITEMS,
+    DELETE_STORED_ITEMS,
+    EDIT_STORED_ITEMS,
+    TOGGLE_STORED_ITEMS,
+    FILTER_ALL,
+    FILTER_KNOWN_LOCATION,
+    FILTER_WANTED,
+    FILTER_SEARCH,
+    FILL_PROFILE,
+    CLOSE_ITEM_PROFILE
+} from '../actions';
 
 function itemReducer(state = {}, action) {
     switch (action.type) {
@@ -15,6 +27,20 @@ function itemReducer(state = {}, action) {
             }
 
             return action.item;
+
+        case FILL_PROFILE:
+            if (state.id !== action.id) {
+                return state;
+            }
+
+            return { ...state, editMode: true };
+
+        case CLOSE_ITEM_PROFILE:
+            if (!!state.editMode) {
+                delete state.editMode;
+            }
+
+            return state;
 
         default:
             return state;
@@ -41,6 +67,12 @@ export default function reducer(state = [], action) {
             return state.map(item => itemReducer(item, action));
 
         case EDIT_STORED_ITEMS:
+            return state.map(item => itemReducer(item, action));
+
+        case FILL_PROFILE:
+            return state.map(item => itemReducer(item, action));
+
+        case CLOSE_ITEM_PROFILE:
             return state.map(item => itemReducer(item, action));
 
         default:

@@ -4,12 +4,12 @@
         "title": "My favourite pen",
         "known": true,
         "location": "On the table",
-        "comment": "Can't touch this",
+        "comment": "Can't touch this!!",
         "photo": "pen.jpg"
     },
     {
         "id": 1,
-        "title": "Collection of coins",
+        "title": "Coins collection",
         "known": false,
         "location": "",
         "comment": "",

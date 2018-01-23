@@ -137,7 +137,7 @@ input:focus {
 main {
     background: #fff;
     width: 70rem;
-    margin: 5rem auto;
+/*    margin: 5rem auto;*/
     border-radius: 5px;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.156863) 0 3px 10px, rgba(0, 0, 0, 0.227451) 0 3px 10px;

@@ -7,6 +7,8 @@ export const ADD_STORED_ITEM_PHOTO = 'ADD_STORED_ITEM_PHOTO';
 export const DELETE_STORED_ITEMS = 'DELETE_STORED_ITEMS';
 export const TOGGLE_STORED_ITEMS = 'TOGGLE_STORED_ITEMS';
 export const EDIT_STORED_ITEMS = 'EDIT_STORED_ITEMS';
+export const FILL_PROFILE = 'FILL_PROFILE';
+export const CLOSE_ITEM_PROFILE = 'CLOSE_ITEM_PROFILE';
 
 export function getStored() {
     return dispatch => {
@@ -64,4 +66,17 @@ export function editItem(id, title, location = '', comment = '', photo = '') {
             type: EDIT_STORED_ITEMS,
             item
         }));
+}
+
+export function fillProfile(id) {
+    return {
+            type: FILL_PROFILE,
+            id
+        };
+}
+
+export function closeProfile() {
+    return {
+            type: CLOSE_ITEM_PROFILE
+        };
 }
