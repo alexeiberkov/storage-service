@@ -60,7 +60,7 @@ export function getFilteredStoredItems(state, filter) {
             return state.filter(item => !item.known);
 
         case FILTER_SEARCH:
-            return state.filter(item => (item.title).indexOf(filter.value) > -1);
+            return state.filter(item => (item.title.toLowerCase()).indexOf(filter.value.toLowerCase()) > -1);
 
         default:
             return state;

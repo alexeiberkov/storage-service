@@ -21,7 +21,7 @@ export default function List(props) {
                         onEdit={props.onEdit}
                         onPhotoUpload={props.onPhotoUpload}
                     />)
-                : props.fetching ? (<div className="loading">Loading...</div>) : (<div className="loading">There are no items</div>)
+                : props.fetching ? (<div className="progress"><div>Loading…</div></div>) : (<div className="message">There are no items</div>)
             }
         </section>
     );
