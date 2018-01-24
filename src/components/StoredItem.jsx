@@ -1,9 +1,8 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import Checkbox from './Checkbox';
 import Button from './Button';
-import StoredItemForm from './StoredItemForm';
 
 export default class StoredItem extends Component {
     constructor(props) {
@@ -17,7 +16,6 @@ export default class StoredItem extends Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleToggle = this.handleToggle.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
-        this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleStoredSubmit = this.handleStoredSubmit.bind(this);
     }
 
@@ -36,8 +34,8 @@ export default class StoredItem extends Component {
         this.setState({editing: false});
     }
 
-    handleStoredSubmit(title, location, comment, photo) {
-        this.props.onEdit(this.props.id, title, location, comment, photo);
+    handleStoredSubmit(title) {
+        this.props.onEdit(this.props.id, title);
         this.setState({editing: false});
     }
 
@@ -64,19 +62,15 @@ export default class StoredItem extends Component {
         }
     }
 
-    handleCloseModal() {
-        this.setState({editing: false});
-    }
-
     renderDisplay() {
         const {title, known} = this.props;
         const className = `stored-item${known ? ' known' : ''}`;
 
         return (
             <div className={className}>
-                <Checkbox checked={known} onChange={this.handleToggle} title={`Did you ${known ? 'lost' : 'found'} it?`}/>
+                <Checkbox checked={known} onChange={this.handleToggle} title={`Click if you ${known ? 'lost' : 'found'} it`}/>
 
-                <span className="stored-item-title" title={`${known ? 'Lost' : 'Known'} item`}>{title}</span>
+                <span className="stored-item-title" title={`${known ? 'Known location' : 'Wonted'} item`}>{title}</span>
 
                 <Button className="edit icon" icon="edit" onClick={this.handleEdit} title="Edit"/>
                 <Button className="delete icon" icon="delete" onClick={this.handleDelete} title="Delete"/>
@@ -84,36 +78,13 @@ export default class StoredItem extends Component {
         );
     }
 
-    _renderFormTitle() {
+    renderForm() {
         return (
             <form className="stored-item-edit-form" onSubmit={this.handleSubmit}>
                 <input type="text" ref="title" defaultValue={this.props.title}/>
                 <Button className="save icon" icon="save" type="submit"/>
             </form>
         );
-    }
-
-    _renderFormProfile() {
-        const {title, location, comment, photo, onPhotoUpload} = this.props;
-
-        return (
-            <Fragment>
-                {this.renderDisplay()}
-                <StoredItemForm
-                    title={title}
-                    location={location}
-                    comment={comment}
-                    photo={photo}
-                    onSubmit={this.handleStoredSubmit}
-                    onClose={this.handleCloseModal}
-                    onPhotoUpload={onPhotoUpload}
-                />
-            </Fragment>
-        );
-    }
-
-    renderForm() {
-        return this.props.known ? this._renderFormProfile() : this._renderFormTitle();
     }
 
     render() {
@@ -124,13 +95,9 @@ export default class StoredItem extends Component {
 StoredItem.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    comment: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
     known: PropTypes.bool.isRequired,
     onDelete: PropTypes.func.isRequired,
     onToggle: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
-    onPhotoUpload: PropTypes.func.isRequired,
     onFillProfile: PropTypes.func.isRequired
 };
