@@ -8,12 +8,18 @@ export default class StoredItemProfile extends Component {
     constructor(props) {
         super(props);
 
-/*        this.state = {
+        this.state = {
             photo: this.props.photo
-        };*/
+        };
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onPhotoUpload = this.onPhotoUpload.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.tmpPhoto !== nextProps.tmpPhoto) {
+            this.setState({photo: nextProps.tmpPhoto});
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -28,7 +34,7 @@ export default class StoredItemProfile extends Component {
         const title = this.refs.storedTitle.value;
         const location = this.refs.storedLocation.value;
         const comment = this.refs.storedComment.value;
-        const photo = this.props.photo;
+        const photo = this.state.photo;
 
         this.props.onEdit(this.props.id, title, location, comment, photo);
     }
@@ -40,13 +46,11 @@ export default class StoredItemProfile extends Component {
             imagefile = this.refs.storedPhoto.files[0];
 
         formData.append("image", imagefile);
-        this.props.onPhotoUpload(formData);
-
-        //this.setState({photo: imagefile.name});
+        this.props.onPhotoUpload(formData, this.props.id);
     }
 
     renderModal() {
-        const {title, location, comment, photo, onClose} = this.props;
+        const {title, location, comment, onClose} = this.props;
 
         return (<Modal>
             <div className="modal-wrapper">
@@ -65,13 +69,13 @@ export default class StoredItemProfile extends Component {
                         defaultValue={comment}
                         placeholder="Add a comment"
                     /></label>
-                    {photo !== '' ?
+                    {this.state.photo !== '' ?
                         (<Fragment>
                             <img
-                                src={`./images/${this.props.photo}`}
+                                src={`./images/${this.state.photo}`}
                                 alt={title}
                                 onClick={() => {
-                                    window.open(`./images/${this.props.photo}`)
+                                    window.open(`./images/${this.state.photo}`)
                                 }}
                                 title="Click to enlarge"
                             />
@@ -86,7 +90,7 @@ export default class StoredItemProfile extends Component {
                             />
                         </Fragment>) :
                         <Fragment>
-                            <label className="label-file" htmlFor="inputFile">{this.props.photo !== '' ? this.props.photo : 'Choose an image…'}</label>
+                            <label className="label-file" htmlFor="inputFile">{this.state.photo !== '' ? this.state.photo : 'Choose an image…'}</label>
                             <input
                                 className="input-file"
                                 type="file"
@@ -118,6 +122,7 @@ StoredItemProfile.propTypes = {
     location: PropTypes.string.isRequired,
     comment: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired,
+    tmpPhoto: PropTypes.string.isRequired,
     onEdit: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     onPhotoUpload: PropTypes.func.isRequired

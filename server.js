@@ -14,7 +14,12 @@ const upload = multer({ storage: multer.diskStorage({
         destination: 'public/images/',
         limits: {fileSize: 10000000, files: 1},
         filename: (req, file, cb) => {
-            cb(null, file.originalname.split('/').pop().trim());
+            let fileName = file.originalname.split('/').pop().trim(),
+                ext = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length);
+
+            fileName = fileName.replace(`.${ext}`, '');
+
+            cb(null, fileName + Date.now() + '.' + ext);
         },
         fileFilter: (req, file, callback) => {
             if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
@@ -71,8 +76,7 @@ app.post('/images/upload', (req, res) => {
         if (err) {
             res.status(400).json({message: err.message});
         } else {
-            let path = `./public/images/${req.file.filename}`;
-            res.status(200).json({message: 'Image Uploaded Successfully !', path: path});
+            res.status(200).json({photo: `${req.file.filename}`});
         }
     });
 });

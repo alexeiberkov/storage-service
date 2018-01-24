@@ -9,7 +9,8 @@ import {
     FILTER_WANTED,
     FILTER_SEARCH,
     FILL_PROFILE,
-    CLOSE_ITEM_PROFILE
+    CLOSE_ITEM_PROFILE,
+    ADD_STORED_ITEM_PHOTO
 } from '../actions';
 
 function itemReducer(state = {}, action) {
@@ -33,14 +34,22 @@ function itemReducer(state = {}, action) {
                 return state;
             }
 
-            return { ...state, editMode: true };
+            return { ...state, editMode: true, tmpPhoto: state.photo };
 
         case CLOSE_ITEM_PROFILE:
             if (!!state.editMode) {
                 delete state.editMode;
+                delete state.tmpPhoto;
             }
 
             return state;
+
+        case ADD_STORED_ITEM_PHOTO:
+            if (state.id !== action.id) {
+                return state;
+            }
+
+            return { ...state, tmpPhoto: action.tmpPhoto};
 
         default:
             return state;
@@ -73,6 +82,9 @@ export default function reducer(state = [], action) {
             return state.map(item => itemReducer(item, action));
 
         case CLOSE_ITEM_PROFILE:
+            return state.map(item => itemReducer(item, action));
+
+        case ADD_STORED_ITEM_PHOTO:
             return state.map(item => itemReducer(item, action));
 
         default:

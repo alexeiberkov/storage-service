@@ -13,7 +13,8 @@ function mapStateToProps(state) {
             location: profileItem.location,
             comment: profileItem.comment,
             photo: profileItem.photo,
-            editMode: profileItem.editMode
+            editMode: profileItem.editMode,
+            tmpPhoto: profileItem.tmpPhoto
         } :
         {
             id: 0,
@@ -21,7 +22,8 @@ function mapStateToProps(state) {
             location: '',
             comment: '',
             photo: '',
-            editMode: false
+            editMode: false,
+            tmpPhoto: ''
         };
 }
 
@@ -29,7 +31,7 @@ function mapDispatchToProps(dispatch) {
     return {
         onEdit: (id, title, location, comment, photo) => dispatch(editItem(id, title, location, comment, photo)),
         onClose: () => dispatch(closeProfile()),
-        onPhotoUpload: photo => dispatch(addPhoto(photo))
+        onPhotoUpload: (photo, id) => dispatch(addPhoto(photo, id))
     };
 }
 

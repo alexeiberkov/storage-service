@@ -34,11 +34,13 @@ export function addItem(title) {
         }));
 }
 
-export function addPhoto(photo) {
+export function addPhoto(photo, id) {
     return axios.post('images/upload', photo, {headers: {'Content-Type': photo.type}})
         .then(response => response.data)
-        .then(() => ({
-            type: ADD_STORED_ITEM_PHOTO
+        .then(item => ({
+            type: ADD_STORED_ITEM_PHOTO,
+            id,
+            tmpPhoto: item.photo
         }));
 }
 
