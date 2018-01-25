@@ -72,13 +72,13 @@ export function editItem(id, title, location = '', comment = '', photo = '') {
 
 export function fillProfile(id) {
     return {
-            type: FILL_PROFILE,
-            id
-        };
+        type: FILL_PROFILE,
+        id
+    };
 }
 
 export function closeProfile() {
     return {
-            type: CLOSE_ITEM_PROFILE
-        };
+        type: CLOSE_ITEM_PROFILE
+    };
 }

@@ -6,7 +6,11 @@ const express = require('express');
 const multer = require('multer');
 const bodyParser = require('body-parser');
 
+const storedJSONPath = './api/depot.json';
+const locationsJSONPath = './api/locations.json';
+
 const storedItems = require('./api/depot');
+const locationsList = require('./api/locations');
 
 const app = express();
 
@@ -15,9 +19,9 @@ const upload = multer({ storage: multer.diskStorage({
         limits: {fileSize: 10000000, files: 1},
         filename: (req, file, cb) => {
             let fileName = file.originalname.split('/').pop().trim(),
-                ext = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length);
+                ext = fileName.split('.').pop();
 
-            fileName = fileName.replace(`.${ext}`, '');
+            fileName = fileName.split('.').shift();
 
             cb(null, fileName + Date.now() + '.' + ext);
         },
@@ -32,6 +36,7 @@ const upload = multer({ storage: multer.diskStorage({
 }).single('image');
 
 let nextId = storedItems.length;
+let nextLocationId = locationsList.length;
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -44,14 +49,18 @@ app.use((req, res, next) => {
     next();
 });
 
-function rewriteJSON(data) {
-    fs.writeFile('./api/depot.json', JSON.stringify(data, null, 4), 'utf-8', function (err) {
+function rewriteJSON(path, data) {
+    fs.writeFile(path, JSON.stringify(data, null, 4), 'utf-8', function (err) {
         if (err) throw err;
     });
 }
 
 app.get('/api/depot', (req, res) => {
     res.send(storedItems);
+});
+
+app.get('/api/locations', (req, res) => {
+    res.send(locationsList);
 });
 
 app.post('/api/depot', (req, res) => {
@@ -66,7 +75,7 @@ app.post('/api/depot', (req, res) => {
 
     storedItems.push(item);
 
-    rewriteJSON(storedItems);
+    rewriteJSON(storedJSONPath, storedItems);
 
     res.send(item);
 });
@@ -92,7 +101,7 @@ app.put('/api/depot/:id', (req, res) => {
     item.comment = req.body.comment;
     item.photo = req.body.photo;
 
-    rewriteJSON(storedItems);
+    rewriteJSON(storedJSONPath, storedItems);
 
     res.json(item);
 });
@@ -105,7 +114,7 @@ app.patch('/api/depot/:id', (req, res) => {
 
     item.known = !item.known;
 
-    rewriteJSON(storedItems);
+    rewriteJSON(storedJSONPath, storedItems);
 
     res.json(item);
 });
@@ -124,7 +133,7 @@ app.delete('/api/depot/:id', (req, res) => {
 
     storedItems.splice(index, 1);
 
-    rewriteJSON(storedItems);
+    rewriteJSON(storedJSONPath, storedItems);
 
     res.sendStatus(204);
 });

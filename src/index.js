@@ -4,9 +4,10 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 import App from './App';
-import { getStored } from './actions';
+import { getStored, getLocations } from './actions';
 
 store.dispatch(getStored());
+store.dispatch(getLocations());
 
 ReactDOM.render(
     <Provider store={store}>

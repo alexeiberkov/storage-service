@@ -1,4 +1,4 @@
-import { REQUEST_STORED_ITEMS, GET_STORED_ITEMS } from '../actions';
+import { REQUEST_STORED_ITEMS, GET_STORED_ITEMS, REQUEST_LOCATIONS, GET_LOCATIONS } from '../actions';
 
 function reducer(state = false, action) {
     switch (action.type) {
@@ -6,6 +6,12 @@ function reducer(state = false, action) {
             return true;
 
         case GET_STORED_ITEMS:
+            return true;
+
+        case REQUEST_LOCATIONS:
+            return true;
+
+        case GET_LOCATIONS:
             return false;
 
         default:
