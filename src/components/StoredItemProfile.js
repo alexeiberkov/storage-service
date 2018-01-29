@@ -31,12 +31,14 @@ export default class StoredItemProfile extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        const title = this.refs.storedTitle.value;
-        const location = this.refs.storedLocation.value;
-        const comment = this.refs.storedComment.value;
-        const photo = this.state.photo;
+        const params = [
+            this.refs.storedTitle.value, // title
+            this.refs.storedLocation.value, // location
+            this.refs.storedComment.value, // comment
+            this.state.photo // photo
+        ];
 
-        this.props.onEdit(this.props.id, title, location, comment, photo);
+        this.props.onEdit(this.props.id, ...params);
     }
 
     onPhotoUpload(e) {
@@ -69,8 +71,8 @@ export default class StoredItemProfile extends Component {
                         defaultValue={comment}
                         placeholder="Add a comment"
                     /></label>
-                    {this.state.photo !== '' ?
-                        (<Fragment>
+                    {this.state.photo !== '' &&
+                        <Fragment>
                             <img
                                 src={`./images/${this.state.photo}`}
                                 alt={title}
@@ -79,28 +81,19 @@ export default class StoredItemProfile extends Component {
                                 }}
                                 title="Click to enlarge"
                             />
-                            <label className="label-file" htmlFor="inputFile">Change photo</label>
-                            <input
-                                className="input-file"
-                                type="file"
-                                id="inputFile"
-                                ref="storedPhoto"
-                                accept=".jpg, .jpeg, .png"
-                                onChange={this.onPhotoUpload}
-                            />
-                        </Fragment>) :
-                        <Fragment>
-                            <label className="label-file" htmlFor="inputFile">{this.state.photo !== '' ? this.state.photo : 'Choose an image…'}</label>
-                            <input
-                                className="input-file"
-                                type="file"
-                                id="inputFile"
-                                ref="storedPhoto"
-                                accept=".jpg, .jpeg, .png"
-                                onChange={this.onPhotoUpload}
-                            />
                         </Fragment>
                     }
+                    <Fragment>
+                        <label className="label-file" htmlFor="inputFile">{this.state.photo !== '' ? 'Change photo' : 'Choose an image…'}</label>
+                        <input
+                            className="input-file"
+                            type="file"
+                            id="inputFile"
+                            ref="storedPhoto"
+                            accept=".jpg, .jpeg, .png"
+                            onChange={this.onPhotoUpload}
+                        />
+                    </Fragment>
                     <div className="button-group">
                         <Button type="submit">Save</Button>
                         <Button onClick={onClose}>Close</Button>

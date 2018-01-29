@@ -29,7 +29,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onEdit: (id, title, location, comment, photo) => dispatch(editItem(id, title, location, comment, photo)),
+        onEdit: (...parameters) => dispatch(editItem(...parameters)),
         onClose: () => dispatch(closeProfile()),
         onPhotoUpload: (photo, id) => dispatch(addPhoto(photo, id))
     };

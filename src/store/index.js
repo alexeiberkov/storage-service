@@ -5,5 +5,6 @@ import thunk from 'redux-thunk';
 import reducer from '../reducers';
 
 const store = createStore(reducer, applyMiddleware(promise, thunk));
+store.subscribe(() => {console.log(store.getState())});
 
 export default store;
